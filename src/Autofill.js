@@ -17,8 +17,9 @@
 	 */
 	function init() {
 		var uLang = mw.config.get( 'wgUserLanguage' ),
+			$input = $( 'h1' ).find( 'input' ),
 			i, fallback;
-		if ( !fallbacks[ uLang ] || !fallbacks[ uLang ].length ){
+		if ( !fallbacks[ uLang ] || !fallbacks[ uLang ].length || !$input.length ){
 			return;
 		}
 		for ( i = 0; i < fallbacks[ uLang ].length; i++ ){
@@ -29,11 +30,9 @@
 			}
 		}
 		if ( fallback ){
-			$( 'h1' )
-				.find( 'input' )
-					.val( fallback )
-					.trigger( 'input' )
-					.focus();
+			$input.val( fallback )
+				.trigger( 'input' )
+				.focus();
 		}
 	}
  
